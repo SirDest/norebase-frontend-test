@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import TableHead from "./TableHead";
+import { generateClassName } from "./utils/tailwind";
+import ErrorPage from "./ErrorPage";
+import Loading from "./Loading";
 
 const Main = () => {
   const [items, setItems] = useState([]);
@@ -8,6 +12,16 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  const titleStyle = ["font-bold", "md:hidden", "block", "text-[14px]"];
+  const rowItemStyles = ["w-1/2", "text-gray-800", "gap-2"];
+  const rowSectionStyles = [
+    "flex",
+    "flex-row",
+    "md:w-1/2",
+    "w-full",
+    "justify-between",
+  ];
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -44,46 +58,51 @@ const Main = () => {
   };
 
   return (
-    <div className="w-full h-screen flex justify-center p-0 md:p-12">
-      <div className="bg-white w-full md:w-[650px] h-fit min-h-[400px] border border-gray-300 flex">
+    <div className="w-full h-screen flex justify-start md:justify-center p-0">
+      <div className="bg-white w-[80%] md:w-[650px] h-fit min-h-[400px] border border-gray-400 flex">
         {errorLoading ? (
-          <p className="text-center m-auto text-[13px]">
-            Loading failed! Check your internet connection and try again.
-          </p>
+          <ErrorPage />
         ) : isLoading ? (
-          <p className="text-center m-auto text-[13px]">
-            Loading... Please Wait!
-          </p>
+          <Loading />
         ) : (
           <div className="w-full h-full flex flex-col">
             <div className="h-full w-full">
-              <div className="bg-white w-full border-b">
-                <div className="flex w-full justify-between px-4 py-3 text-left text-gray-700 font-semibold">
-                  <div className="flex w-1/2 justify-between">
-                    <p className="w-1/2">💰Coin</p>
-                    <p className="w-1/2">📄Code</p>
-                  </div>
-                  <div className="flex w-1/2 justify-between">
-                    <p className="w-1/2">🤑Price</p>
-                    <p className="w-1/2">📉Total Supply</p>
-                  </div>
-                </div>
-              </div>
+              <TableHead />
               <div className="h-full w-full text-[13px]">
                 {currentItems.map(
                   ({ id, name, symbol, price_usd, tsupply }) => {
                     return (
                       <div
                         key={id}
-                        className="flex w-full justify-between px-4 py-2 border-b border-b-gray-300 hover:bg-gray-300 bg-gray-100 even:bg-white transition-all duration-300"
+                        className="flex md:flex-row flex-col w-full justify-between px-4 py-2 border-b border-gray-300 hover:bg-gray-300 bg-gray-100 even:bg-white transition-all duration-300 gap-2 md:gap-0"
                       >
-                        <div className="flex w-1/2 justify-between">
-                          <p className="w-1/2 text-gray-800">{name}</p>
-                          <p className="w-1/2 text-gray-800">{symbol}</p>
+                        <div className={generateClassName(rowSectionStyles)}>
+                          <div className={generateClassName(rowItemStyles)}>
+                            <p className={generateClassName(titleStyle)}>
+                              💰Coin
+                            </p>
+                            <p>{name}</p>
+                          </div>
+                          <div className={generateClassName(rowItemStyles)}>
+                            <p className={generateClassName(titleStyle)}>
+                              📄Code
+                            </p>
+                            <p>{symbol}</p>
+                          </div>
                         </div>
-                        <div className="flex w-1/2 justify-between">
-                          <p className="w-1/2 text-gray-800">{price_usd}</p>
-                          <p className="w-1/2 text-gray-800">{tsupply}</p>
+                        <div className={generateClassName(rowSectionStyles)}>
+                          <div className={generateClassName(rowItemStyles)}>
+                            <p className={generateClassName(titleStyle)}>
+                              🤑Price
+                            </p>
+                            <p>{price_usd}</p>
+                          </div>
+                          <div className={generateClassName(rowItemStyles)}>
+                            <p className={generateClassName(titleStyle)}>
+                              📉Total Supply
+                            </p>
+                            <p>{tsupply}</p>
+                          </div>
                         </div>
                       </div>
                     );
