@@ -10,6 +10,7 @@ const Main = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [errorLoading, setErrorLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(items.length / itemsPerPage);
 
@@ -21,6 +22,16 @@ const Main = () => {
     "md:w-1/2",
     "w-full",
     "justify-between",
+  ];
+  const buttonStyles = [
+    "active:outline",
+    "focus:outline",
+    "focus:outline-yellow-200",
+    "active:outline-black",
+    "outline-1",
+    "flex",
+    "gap-2",
+    "items-center",
   ];
 
   useEffect(() => {
@@ -57,6 +68,7 @@ const Main = () => {
     }
   };
 
+  //
   return (
     <div className="w-full h-screen flex justify-start md:justify-center p-0">
       <div className="bg-white w-[80%] md:w-[650px] h-fit min-h-[400px] border border-gray-400 flex">
@@ -115,7 +127,7 @@ const Main = () => {
                 {currentPage >= 1 && (
                   <button
                     onClick={handlePrevious}
-                    className="border-none outline-none flex gap-2 items-center"
+                    className={generateClassName(buttonStyles)}
                   >
                     <AiOutlineArrowLeft className="text-[12px]" /> Prev
                   </button>
@@ -125,7 +137,7 @@ const Main = () => {
                 {currentPage < totalPages - 1 && (
                   <button
                     onClick={handleNext}
-                    className="border-none outline-none flex gap-2 items-center"
+                    className={generateClassName(buttonStyles)}
                   >
                     Next <AiOutlineArrowRight className="text-[12px]" />
                   </button>
