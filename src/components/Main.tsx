@@ -48,7 +48,7 @@ const Main = () => {
       <div className="bg-white w-full md:w-[650px] h-fit min-h-[400px] border border-gray-300 flex">
         {errorLoading ? (
           <p className="text-center m-auto text-[13px]">
-            Loading failed! Check Iternet connection and try again.
+            Loading failed! Check your internet connection and try again.
           </p>
         ) : isLoading ? (
           <p className="text-center m-auto text-[13px]">
@@ -56,33 +56,41 @@ const Main = () => {
           </p>
         ) : (
           <div className="w-full h-full flex flex-col">
-            <table className="h-full w-full">
-              <thead className="bg-white w-full border-b">
-                <tr className="flex w-full justify-between px-4 py-3 text-left text-gray-700 font-semibold">
-                  <th className="w-1/4">💰Coin</th>
-                  <th className="w-1/4">📄Code</th>
-                  <th className="w-1/4">🤑Price</th>
-                  <th className="w-1/4">📉Total Supply</th>
-                </tr>
-              </thead>
-              <tbody className="h-full w-full text-[13px]">
+            <div className="h-full w-full">
+              <div className="bg-white w-full border-b">
+                <div className="flex w-full justify-between px-4 py-3 text-left text-gray-700 font-semibold">
+                  <div className="flex w-1/2 justify-between">
+                    <p className="w-1/2">💰Coin</p>
+                    <p className="w-1/2">📄Code</p>
+                  </div>
+                  <div className="flex w-1/2 justify-between">
+                    <p className="w-1/2">🤑Price</p>
+                    <p className="w-1/2">📉Total Supply</p>
+                  </div>
+                </div>
+              </div>
+              <div className="h-full w-full text-[13px]">
                 {currentItems.map(
                   ({ id, name, symbol, price_usd, tsupply }) => {
                     return (
-                      <tr
+                      <div
                         key={id}
                         className="flex w-full justify-between px-4 py-2 border-b border-b-gray-300 hover:bg-gray-300 bg-gray-100 even:bg-white transition-all duration-300"
                       >
-                        <td className="w-1/4 text-gray-800">{name}</td>
-                        <td className="w-1/4 text-gray-800">{symbol}</td>
-                        <td className="w-1/4 text-gray-800">{price_usd}</td>
-                        <td className="w-1/4 text-gray-800">{tsupply}</td>
-                      </tr>
+                        <div className="flex w-1/2 justify-between">
+                          <p className="w-1/2 text-gray-800">{name}</p>
+                          <p className="w-1/2 text-gray-800">{symbol}</p>
+                        </div>
+                        <div className="flex w-1/2 justify-between">
+                          <p className="w-1/2 text-gray-800">{price_usd}</p>
+                          <p className="w-1/2 text-gray-800">{tsupply}</p>
+                        </div>
+                      </div>
                     );
                   }
                 )}
-              </tbody>
-            </table>
+              </div>
+            </div>
             <div className="w-full flex justify-between p-2">
               <div className="flex-1">
                 {currentPage >= 1 && (
