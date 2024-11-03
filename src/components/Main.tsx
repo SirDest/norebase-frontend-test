@@ -10,7 +10,6 @@ const Main = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [errorLoading, setErrorLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isClicked, setIsClicked] = useState(false);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(items.length / itemsPerPage);
 

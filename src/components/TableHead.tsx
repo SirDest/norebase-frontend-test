@@ -1,7 +1,8 @@
 import React from "react";
 import { generateClassName } from "./utils/tailwind";
-const sectionStyles = ["flex", "w-1/2", "justify-between"];
 const TableHead = () => {
+  const sectionStyles = ["flex", "w-1/2", "justify-between"];
+
   return (
     <div className="bg-white md:flex hidden w-full justify-between px-4 py-3 text-left text-gray-700 font-semibold">
       <div className={generateClassName(sectionStyles)}>
