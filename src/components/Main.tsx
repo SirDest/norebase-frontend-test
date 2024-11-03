@@ -70,7 +70,7 @@ const Main = () => {
   //
   return (
     <div className="w-full h-screen flex justify-start md:justify-center p-0">
-      <div className="bg-white w-[80%] md:w-[650px] h-fit min-h-[400px] border border-gray-400 flex">
+      <div className="bg-white w-[80%] md:w-[700px] h-fit min-h-[400px] border border-gray-400 flex">
         {errorLoading ? (
           <ErrorPage />
         ) : isLoading ? (
@@ -106,13 +106,15 @@ const Main = () => {
                             <p className={generateClassName(titleStyle)}>
                               🤑Price
                             </p>
-                            <p>{price_usd}</p>
+                            <p>$ {price_usd}</p>
                           </div>
                           <div className={generateClassName(rowItemStyles)}>
                             <p className={generateClassName(titleStyle)}>
                               📉Total Supply
                             </p>
-                            <p>{tsupply}</p>
+                            <p>
+                              {tsupply} {symbol}
+                            </p>
                           </div>
                         </div>
                       </div>
